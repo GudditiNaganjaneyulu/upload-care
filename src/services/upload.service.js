@@ -12,8 +12,8 @@ const ALLOWED_VIDEO_TYPES = ["video/mp4", "video/webm", "video/quicktime", "vide
 // ✅ All allowed types
 const ALLOWED_TYPES = [...ALLOWED_IMAGE_TYPES, ...ALLOWED_VIDEO_TYPES];
 
-// ✅ Max file size for simple upload (5MB)
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
+// ✅ Max file size for simple upload (100MB)
+const MAX_FILE_SIZE = 100 * 1024 * 1024;
 
 // ✅ Max file size for multipart upload (500MB)
 const MAX_MULTIPART_FILE_SIZE = 500 * 1024 * 1024;
