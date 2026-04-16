@@ -10,7 +10,7 @@ export const swaggerSpec = swaggerJsdoc({
     },
     servers: [
       {
-        url: "http://localhost:5000",
+        url: "https://upload-care.onrender.com",
       },
     ],
   },
