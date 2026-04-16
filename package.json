@@ -1,0 +1,32 @@
+{
+  "name": "upload-care",
+  "version": "1.0.0",
+  "description": "Supabase upload backend with signed URL + Swagger",
+  "type": "module",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GudditiNaganjaneyulu/upload-care.git"
+  },
+  "keywords": ["supabase", "upload", "backend", "storage"],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GudditiNaganjaneyulu/upload-care/issues"
+  },
+  "homepage": "https://github.com/GudditiNaganjaneyulu/upload-care#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.103.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^13.0.0",
+    "yamljs": "^0.3.0"
+  }
+}

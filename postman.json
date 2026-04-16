@@ -1,0 +1,105 @@
+{
+  "info": {
+    "name": "Supabase Upload API",
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
+    "description": "Full upload flow: init → upload → complete",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "uploadId",
+      "value": ""
+    },
+    {
+      "key": "filePath",
+      "value": ""
+    },
+    {
+      "key": "signedUrl",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "1️⃣ Init Upload",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/upload/init",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "upload", "init"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const res = pm.response.json();",
+              "pm.collectionVariables.set(\"uploadId\", res.data.uploadId);",
+              "pm.collectionVariables.set(\"filePath\", res.data.filePath);",
+              "pm.collectionVariables.set(\"signedUrl\", res.data.signedUrl);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2️⃣ Upload File (PUT to Signed URL)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "image/png"
+          }
+        ],
+        "body": {
+          "mode": "file",
+          "file": {
+            "src": ""
+          }
+        },
+        "url": {
+          "raw": "{{signedUrl}}",
+          "host": ["{{signedUrl}}"]
+        }
+      }
+    },
+    {
+      "name": "3️⃣ Complete Upload",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"uploadId\": \"{{uploadId}}\",\n  \"filePath\": \"{{filePath}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/upload/complete",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "upload", "complete"]
+        }
+      }
+    }
+  ]
+}
